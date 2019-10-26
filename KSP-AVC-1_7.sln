@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6DF0E8C4-1D1F-40BA-A655-FF074C24FE50}"
+	ProjectSection(SolutionItems) = preProject
+		buildRelease.bat = buildRelease.bat
+		ChangeLog.txt = ChangeLog.txt
+		deploy.bat = deploy.bat
+		jenkins.txt = jenkins.txt
+		jenkinsMiniAVC.txt = jenkinsMiniAVC.txt
+		KSP-AVC.version = KSP-AVC.version
+		TODO.txt = TODO.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestCases", "TestCases", "{34AF4147-05C0-43DB-B9C4-9D2162560CAE}"
+	ProjectSection(SolutionItems) = preProject
+		TestCases\KspMaxVersion.version = TestCases\KspMaxVersion.version
+		TestCases\KspMaxVersion1.version = TestCases\KspMaxVersion1.version
+		TestCases\KspMaxVersion2.version = TestCases\KspMaxVersion2.version
+		TestCases\KspMinMaxVersion.version = TestCases\KspMinMaxVersion.version
+		TestCases\KspMinMaxVersion1.version = TestCases\KspMinMaxVersion1.version
+		TestCases\KspMinMaxVersion2.version = TestCases\KspMinMaxVersion2.version
+		TestCases\KspMinMaxVersion3.version = TestCases\KspMinMaxVersion3.version
+		TestCases\KspMinVersion.version = TestCases\KspMinVersion.version
+		TestCases\KspMinVersion1.version = TestCases\KspMinVersion1.version
+		TestCases\KspMinVersion2.version = TestCases\KspMinVersion2.version
+		TestCases\KspVersion.version = TestCases\KspVersion.version
+		TestCases\KspVersion1.version = TestCases\KspVersion1.version
+		TestCases\KspVersion2.version = TestCases\KspVersion2.version
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniAVC-1_7", "MiniAVC\MiniAVC-1_7.csproj", "{F1351BAB-76F1-41DE-B01C-496163CB44D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP-AVC-1_7", "KSP-AVC\KSP-AVC-1_7.csproj", "{F745CC0C-B7A0-4EF2-BF5A-1D3F0C19202C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVCToolkit-1_7", "AVCToolkit\AVCToolkit-1_7.csproj", "{FD522EDB-A592-41C8-9342-C3629C18A6AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1351BAB-76F1-41DE-B01C-496163CB44D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1351BAB-76F1-41DE-B01C-496163CB44D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1351BAB-76F1-41DE-B01C-496163CB44D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1351BAB-76F1-41DE-B01C-496163CB44D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F745CC0C-B7A0-4EF2-BF5A-1D3F0C19202C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F745CC0C-B7A0-4EF2-BF5A-1D3F0C19202C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F745CC0C-B7A0-4EF2-BF5A-1D3F0C19202C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F745CC0C-B7A0-4EF2-BF5A-1D3F0C19202C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD522EDB-A592-41C8-9342-C3629C18A6AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD522EDB-A592-41C8-9342-C3629C18A6AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD522EDB-A592-41C8-9342-C3629C18A6AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD522EDB-A592-41C8-9342-C3629C18A6AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C215420A-C972-49E5-B498-3C8E2BC4C6D5}
+	EndGlobalSection
+EndGlobal
