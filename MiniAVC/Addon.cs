@@ -13,8 +13,6 @@
 
 using System;
 using System.IO;
-using System.Net;
-using System.Text;
 using System.Threading;
 using UnityEngine;
 
@@ -112,32 +110,24 @@ namespace MiniAVC
             }
         }
 
-		private void FetchRemoteInfo()
-		{
-			//using (var www = new WWW(Uri.EscapeUriString(LocalInfo.Url)))
-			//{
-			//    while (!www.isDone)
-			//    {
-			//        Thread.Sleep(100);
-			//    }
-			//    if (www.error == null)
-			//    {
-			try
-			{
-				SetRemoteInfo(HttpWebRequestBeginGetRequest.GetRequest(LocalInfo.Url));
-			}
-			catch (Exception ex)
-			{
-				Logger.Log("EXCEPTION: " + ex);
-				SetLocalInfoOnly();
-			}
-			//}
-			//else
-			//{
-
-			//}
-			//}
-		}
+        private void FetchRemoteInfo()
+        {
+            using (var www = new WWW(Uri.EscapeUriString(LocalInfo.Url)))
+            {
+                while (!www.isDone)
+                {
+                    Thread.Sleep(100);
+                }
+                if (www.error == null)
+                {
+                    SetRemoteInfo(www);
+                }
+                else
+                {
+                    SetLocalInfoOnly();
+                }
+            }
+        }
 
         private void ProcessLocalInfo(object state)
         {
@@ -201,12 +191,12 @@ namespace MiniAVC
             Logger.Blank();
         }
 
-        private void SetRemoteInfo(string text)
+        private void SetRemoteInfo(WWW www)
         {
-            RemoteInfo = new AddonInfo(LocalInfo.Url, text);
+            RemoteInfo = new AddonInfo(LocalInfo.Url, www.text);
             RemoteInfo.FetchRemoteData();
 
-            Logger.Log("LocalInfo.Url: " + LocalInfo.Url + ",   www.text: " + text);
+            Logger.Log("LocalInfo.Url: " + LocalInfo.Url + ",   www.text: " + www.text);
 #if true
             if (LocalInfo.Version == RemoteInfo.Version)
             {
@@ -227,74 +217,4 @@ namespace MiniAVC
             IsProcessingComplete = true;
         }
     }
-
-	class HttpWebRequestBeginGetRequest
-	{
-		private static ManualResetEvent allDone = new ManualResetEvent(false);
-		private static string webResponse = String.Empty;
-
-		public static string GetRequest(string url) { 
-			// Create a new HttpWebRequest object.
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-			request.ContentType = "application/x-www-form-urlencoded";
-
-			// Set the Method property to 'POST' to post data to the URI.
-			// request.Method = "POST";
-			request.Method = "GET";
-
-			// start the asynchronous operation
-			request.BeginGetRequestStream(new AsyncCallback(GetRequestStreamCallback), request);
-
-			// Keep the main thread from continuing while the asynchronous
-			// operation completes. A real world application
-			// could do something useful such as updating its user interface. 
-			allDone.WaitOne();
-
-			return webResponse;
-		}
-
-		private static void GetRequestStreamCallback(IAsyncResult asynchronousResult)
-		{
-			HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
-
-			// End the operation
-			Stream postStream = request.EndGetRequestStream(asynchronousResult);
-
-			//Console.WriteLine("Please enter the input data to be posted:");
-			string postData = String.Empty;
-
-			if (!String.IsNullOrEmpty(postData))
-			{
-				// Convert the string into a byte array.
-				byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-
-				// Write to the request stream.
-				postStream.Write(byteArray, 0, postData.Length);
-			}
-			postStream.Close();
-
-			// Start the asynchronous operation to get the response
-			request.BeginGetResponse(new AsyncCallback(GetResponseCallback), request);
-		}
-
-		private static void GetResponseCallback(IAsyncResult asynchronousResult)
-		{
-			HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
-
-			// End the operation
-			HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(asynchronousResult);
-			Stream streamResponse = response.GetResponseStream();
-			StreamReader streamRead = new StreamReader(streamResponse);
-			webResponse = streamRead.ReadToEnd();
-			//Console.WriteLine(webResponse);
-			// Close the stream object
-			streamResponse.Close();
-			streamRead.Close();
-
-			// Release the HttpWebResponse
-			response.Close();
-			allDone.Set();
-		}
-	}
 }
